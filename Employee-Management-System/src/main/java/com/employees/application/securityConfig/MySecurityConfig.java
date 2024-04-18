@@ -46,7 +46,7 @@ public class MySecurityConfig {
         httpSecurity.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/user/find", "/employee/**").authenticated()
                 .requestMatchers("/api/create", "/EmployeePdf", "/logout",
-                        "/api/login", "/login","/employee/home","/api/register").permitAll());
+                        "/api/login", "/login","/employee/home","/api/register","/data").permitAll());
         httpSecurity.formLogin(form -> form
                 .loginPage("/api/login")
                 .loginProcessingUrl("/doLogin")
