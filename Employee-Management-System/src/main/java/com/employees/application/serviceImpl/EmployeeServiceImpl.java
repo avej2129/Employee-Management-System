@@ -1,6 +1,5 @@
 package com.employees.application.serviceImpl;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,11 +47,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.save(existing);
 
 	}
-
 	@Override
 	public void deleteEmployeeById(int id) {
 		this.employeeRepository.deleteById(id);
 	}
+
+	@Override
+	public List<String> getAllPhoneNumber() {
+		return employeeRepository.getPhoneNumber();
+	}
+
 
 }
 
