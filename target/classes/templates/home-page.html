@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+    <meta charset="UTF-8">
+    <title>Employee Management System</title>
+    <style>
+        .data {
+            justify-content: center;
+            text-align: center;
+        }
+        #btn, btn01{
+         margin-bottom: 10px;
+
+        }
+        .thead{
+        text-align: center;
+        }
+        .logout{
+        margin-left: 93%;
+        margin-top: -40px;
+        }
+        #userProfileCheckbox{
+         justify-items: end;
+         align-items: end;
+         border: 2px solid red;
+         border-radius: 15px;
+         color: indianred;
+         padding : 3px 10px;
+         margin-left : 80%;
+
+        }
+        #userProfileName{
+         cursor: pointer;
+        }
+        .UserProfile{
+         margin-top: 1%;
+          font-family: "Times New Roman", Times, serif;
+        }
+
+    </style>
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">Employee Management System</a>
+</nav>
+<div class="UserProfile">
+    <i id="userProfileCheckbox" class="fa-solid fa-user"><b id="userProfileName" style="font-family:'Sans-serif'; margin-left : 4px;" ></b></i>
+    <!--            <input type="checkbox" ><b id="userProfileName">User</b>-->
+</div>
+<div class="logout">
+   <i class="fa fa-logout">
+       <a href="/logout">Logout</a>
+   </i>
+</div>
+<div class="container">
+    <div class="heading">
+        <h1>List Employees</h1>
+    </div>
+    <div class="container my-4">
+        <div th:switch="${Employee}" class="container my-1">
+            <a href="/employee/add" class="btn btn-primary"> <i>Add Employee</i></a>
+            <a href="/employee/deleted-employee" class="btn btn-primary"><i>Deleted Employee List</i></a>
+            <br>
+            <table class="table table-striped table-bordered">
+                <thead class="table-dark">
+                <tr class="thead">
+                    <!-- <th>Employee ID</th>-->
+                    <th>Employee First Name</th>
+                    <th>Employee Last Name</th>
+                    <th>Employee Email ID</th>
+                    <th>Employee Phone Number</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody class="data">
+                <tr th:each="employee : ${ListEmployees}">
+                    <!--                    <td th:text="${employee.id}"></td>-->
+                    <td th:text="${employee.firstName}"></td>
+                    <td th:text="${employee.lastName}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.phoneNo}"></td>
+                    <td>
+                        <a th:href="@{/employee/update/{id}(id=${employee.id})}"
+                           class="btn btn-primary" id="btn">Update</a>
+                        <a th:href="@{/employee/delete/{id}(id=${employee.id})}"
+                           class="btn btn-danger" id="btn1">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+            <div class="col-md-6">
+                <a href="/EmployeePdf">
+                    <button id="btn01" class="btn btn-primary">Download PDF</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    let checkbox = document.getElementById("userProfileCheckbox");
+    let userProfileName = document.getElementById("userProfileName");
+    const url = '/api/username';
+
+    checkbox.addEventListener('click', function(){
+       fetch(url)
+        .then(respoonse => {
+            if(respoonse.ok){
+               return respoonse.text();
+            }
+            throw new Error("not fetch a data")
+        })
+        .then(data => {
+             userProfileName.innerText =  "Hi, "+ data.split('@')[0];
+        })
+        .catch(error => {
+        console.error('There was a problem with the fetch operation:', error);
+    });
+    });
+
+
+</script>
+</body>
+
+</html>

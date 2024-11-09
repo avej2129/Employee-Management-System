@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.employees.application.EmployeeManagementSystemApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 6.792 s -- in com.employees.application.EmployeeManagementSystemApplicationTests
