@@ -79,6 +79,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<DeletedEmployee> findDeletedEmployee() {
+		log.info("Finding all deleted employee.");
 		return deletedEmployeeRepo.findAll();
 	}
 }
