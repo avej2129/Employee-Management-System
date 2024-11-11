@@ -14,9 +14,12 @@ import lombok.NoArgsConstructor;
 public class User {
     @Id
     private String name;
+
     @Column(name = "emailId")
     private String username;
+
     private String password;
+
     private String roles;
 
     public String getName() {
