@@ -20,4 +20,6 @@ public interface EmployeeService {
 	List<String> getAllPhoneNumber();
 
 	List<DeletedEmployee> findDeletedEmployee();
+
+	void restoreEmployee(int id);
 }

@@ -82,6 +82,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		log.info("Finding all deleted employee.");
 		return deletedEmployeeRepo.findAll();
 	}
+
+	@Override
+	public void restoreEmployee(int id) {
+		Optional<DeletedEmployee> deletedEmployee = deletedEmployeeRepo.findById(id);
+		if (deletedEmployee.isPresent()){
+			Employee restoreEmployee = modelMapper.map(deletedEmployee.get(),Employee.class);
+			log.info("Restored employee details.");
+			employeeRepository.save(restoreEmployee);
+
+			deletedEmployeeRepo.deleteById(id);
+		}
+	}
 }
 
 

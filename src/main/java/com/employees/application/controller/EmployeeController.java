@@ -65,4 +65,9 @@ public class EmployeeController {
 		model.addAttribute("ListDeletedEmployees", employeeService.findDeletedEmployee());
 		return "deleted-employee";
 	}
+	@GetMapping("/restoreEmployee/{id}")
+	public String restoreEmployee(@PathVariable int id){
+		employeeService.restoreEmployee(id);
+		return "redirect:/employee/home";
+	}
 }

@@ -16,6 +16,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     UserRepository userRepository;
 
+    @Autowired
+    MySecurityConfig config;
+
     @Override
     public List<User> findAllUser() {
         return userRepository.findAll();
@@ -26,8 +29,9 @@ public class UserServiceImpl implements UserService {
         User exsiting = new User();
         exsiting.setName(user.getName());
         exsiting.setUsername(user.getUsername());
-        exsiting.setPassword(MySecurityConfig.passwordEncoder().encode(user.getPassword()));
+        exsiting.setPassword(config.passwordEncoder().encode(user.getPassword()));
         exsiting.setRoles(user.getRoles());
+        exsiting.setConfirmPassword(config.passwordEncoder().encode(user.getConfirmPassword()));
         return userRepository.save(exsiting);
     }
 }

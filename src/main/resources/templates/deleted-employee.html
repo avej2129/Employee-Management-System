@@ -28,9 +28,9 @@
             <th>Employee Last Name</th>
             <th>Employee Email</th>
             <th>Employee Phone Number</th>
+            <th>Action</th>
         </tr>
         </thead>
-
         <tbody>
             <tr th:each="DeletedEmployee : ${ListDeletedEmployees}">
                 <td th:text="${DeletedEmployee.id}"></td>
@@ -38,15 +38,15 @@
                 <td th:text="${DeletedEmployee.lastName}"></td>
                 <td th:text="${DeletedEmployee.email}"></td>
                 <td th:text="${DeletedEmployee.phoneNo}"></td>
+                <td>
+                    <a th:href="@{/employee/restoreEmployee/{id}(id=${DeletedEmployee.id})}"
+                       class="btn btn-primary" id="btn">Restore</a>
+                </td>
             </tr>
         </tbody>
     </table>
 </div>
-
 </div>
-
 </div>
-
 </body>
-
 </html>

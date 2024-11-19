@@ -25,18 +25,12 @@ public class MySecurityConfig {
     UserRepository userRepository;
 
     @Bean
-    public static PasswordEncoder passwordEncoder() {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);
     }
 
     @Bean
     public UserDetailsService userDetailsService() {
-
-//<--------------hard Code Username and password------------------------------->
-//        UserDetails admin = User.withUsername("Avej")
-//                                .password(passwordEncoder.encode("12345")).build();
-//        return new InMemoryUserDetailsManager(admin);
-
         return new UserdetailsService();
     }
 

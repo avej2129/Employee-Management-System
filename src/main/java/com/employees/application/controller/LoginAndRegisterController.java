@@ -19,7 +19,6 @@ public class LoginAndRegisterController {
     @GetMapping("/register")
     public String register(Model model){
         model.addAttribute("User", new User());
-      //  model.addAttribute("successMessage","You are Register successfully");
         return "userRegister";
     }
     @PostMapping("/create")
