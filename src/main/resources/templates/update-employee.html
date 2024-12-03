@@ -1,15 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<style>
-    h2 {
-        text-align: center;
-    }
-
-    #btn {
-        margin-top: -67px;
-        margin-left: 90px
-    }
-</style>
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -21,6 +11,15 @@
           crossorigin="anonymous">
     <link rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <style>
+        h2 {
+            text-align: center;
+        }
+        #btn {
+            margin-top: -67px;
+            margin-left: 90px
+        }
+    </style>
 </head>
 
 <body>
@@ -30,12 +29,12 @@
     <a class="navbar-brand" href="#">Employee Management System</a>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-
             <a class="navbar-item  nav-link " href="#">Employee Management </a>
+        </div>
+    </div>
 </nav>
 
 <div class="container my-5">
-
     <div class="card">
         <div class="card-body">
             <h2 class="card-title">Update Employee</h2>
@@ -60,30 +59,23 @@
                             <input type="email" th:field="*{email}" class="form-control"
                                    id="email" email="email" required placeholder=" Enter Email"/>
                         </div>
-
                         <div class="form-group col-md-8">
-                            <label for="number" class="col-form-label">Employee
-                                Phone Number</label> <input type="number" th:field="*{phoneNo}"
-                                                            class="form-control" id="number" required
-                                                            placeholder=" Enter Phone Number"/>
+                            <label for="number" class="col-form-label">Employee Phone Number</label>
+                            <input type="number" th:field="*{phoneNo}"
+                                   class="form-control" id="number" required
+                                   placeholder=" Enter Phone Number"/>
                         </div>
-
-
                         <div class="col-md-6">
                             <input type="submit" class="btn btn-primary" value=" Submit ">
                         </div>
-
                         <input type="hidden" id="id" th:field="*{id}">
-
                     </div>
                 </form>
-
                 <div class="col-md-6">
                     <a href="/employee/home">
                         <button id="btn" class="btn btn-primary">Previous</button>
                     </a>
                 </div>
-
             </div>
         </div>
     </div>

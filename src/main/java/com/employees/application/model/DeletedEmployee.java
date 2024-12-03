@@ -15,12 +15,14 @@ public class DeletedEmployee {
     @Id
     private int id;
 
+    private int employeeId;
+
     private String firstName;
 
     private String lastName;
 
     private String email;
 
-    private long phoneNo;
+    private String phoneNo;
 
 }

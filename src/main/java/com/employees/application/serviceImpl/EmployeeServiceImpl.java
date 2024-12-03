@@ -2,6 +2,7 @@ package com.employees.application.serviceImpl;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import com.employees.application.model.DeletedEmployee;
 import com.employees.application.repository.DeletedEmployeeRepo;
@@ -43,6 +44,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public Employee addEmployee(Employee employee) {
+		Random random = new Random();
+		int employeeId = 5908;
+		boolean existById = false;
+		do {
+			existById = employeeRepository.existsByEmployeeId(employeeId);
+			if(existById){
+				employeeId = random.nextInt(10000);
+				existById = true;
+			}
+		}while (existById);
+
+		employee.setEmployeeId(employeeId);
+		employee.setPhoneNo(("+91 " + employee.getPhoneNo()));
 		log.info("Save the employee details");
 		return employeeRepository.save(employee);
 	}
@@ -55,7 +69,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		existing.setFirstName(employee.getFirstName());
 		existing.setLastName(employee.getLastName());
 		existing.setEmail(employee.getEmail());
-		existing.setPhoneNo(employee.getPhoneNo());
+		existing.setPhoneNo("+91 "+employee.getPhoneNo());
 		return employeeRepository.save(existing);
 
 	}
@@ -93,6 +107,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 			deletedEmployeeRepo.deleteById(id);
 		}
+	}
+	@Override
+	public void permanentDeleteEmployee(int id) {
+		deletedEmployeeRepo.deleteById(id);
 	}
 }
 

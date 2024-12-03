@@ -7,15 +7,18 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 @Entity
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Employee {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
+
+	private int employeeId;
 
 	private String firstName;
 
@@ -23,6 +26,6 @@ public class Employee {
 
 	private String email;
 
-	private long phoneNo;
+	private String phoneNo;
 
 }

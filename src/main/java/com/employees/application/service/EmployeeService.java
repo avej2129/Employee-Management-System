@@ -22,4 +22,6 @@ public interface EmployeeService {
 	List<DeletedEmployee> findDeletedEmployee();
 
 	void restoreEmployee(int id);
+
+	void permanentDeleteEmployee(int id);
 }

@@ -17,5 +17,4 @@ public class EmployeeManagementSystemApplication implements CommandLineRunner{
 	public void run(String... args) throws Exception {
 
 	}
-
 }
