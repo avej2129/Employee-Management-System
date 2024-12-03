@@ -31,9 +31,9 @@ public class MySecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable());
         httpSecurity.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/user/find", "/employee/**").authenticated()
+                .requestMatchers("/user/find", "/employee/**","/api/username").authenticated()
                 .requestMatchers("/api/create", "/EmployeePdf", "/logout",
-                        "/api/login", "/login","/employee/home","/api/register","/data", "/employee/deletedEmployeeList","/api/username").permitAll());
+                        "/api/login", "/login","/employee/home","/api/register","/data", "/employee/deletedEmployeeList").permitAll());
         httpSecurity.formLogin(form -> form
                 .loginPage("/api/login")
                 .loginProcessingUrl("/doLogin")
