@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,13 +32,14 @@ public class MySecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf(csrf -> csrf.disable());
         httpSecurity.authorizeHttpRequests(auth -> auth
-                .requestMatchers("/user/find", "/employee/**","/api/username").authenticated()
+                .requestMatchers("/user/find", "/employee/**","/api/username","/api/data").authenticated()
                 .requestMatchers("/api/create", "/EmployeePdf", "/logout",
-                        "/api/login", "/login","/employee/home","/api/register","/data", "/employee/deletedEmployeeList").permitAll());
+                        "/api/login", "/login","/employee/home","/api/register", "/employee/deletedEmployeeList").permitAll());
         httpSecurity.formLogin(form -> form
                 .loginPage("/api/login")
                 .loginProcessingUrl("/doLogin")
                 .defaultSuccessUrl("/employee/home").permitAll());
+        httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.logout(logout->
                 logout.logoutUrl("/logout")
                         .logoutSuccessUrl("/api/login").permitAll()
