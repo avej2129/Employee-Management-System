@@ -12,18 +12,21 @@ import org.springframework.web.bind.annotation.*;
 public class LoginAndRegisterController {
     @Autowired
     UserService userService;
+
     @GetMapping("/login")
-    public String login(){
+    public String login() {
         return "login";
     }
+
     @GetMapping("/register")
-    public String register(Model model){
+    public String register(Model model) {
         model.addAttribute("User", new User());
         return "userRegister";
     }
+
     @PostMapping("/create")
-    public String saveUser(User user){
-         userService.saveUser(user);
+    public String saveUser(User user) {
+        userService.saveUser(user);
         return "redirect:/api/login";
     }
 
