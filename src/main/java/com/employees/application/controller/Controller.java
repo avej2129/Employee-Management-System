@@ -18,11 +18,12 @@ public class Controller {
     EmployeeService employeeService;
 
     @GetMapping("/data")
-    public ResponseEntity<List<String>> getPhoneNumber(){
+    public ResponseEntity<List<String>> getPhoneNumber() {
         return ResponseEntity.ok(employeeService.getAllPhoneNumber());
     }
+
     @GetMapping("/username")
-    public String getUserName(Principal principal){
+    public String getUserName(Principal principal) {
         return principal.getName().toUpperCase();
     }
 }
